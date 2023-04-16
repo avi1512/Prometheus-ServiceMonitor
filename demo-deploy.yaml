@@ -7,11 +7,11 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: demo-app
+      release: prometheus
   template:
     metadata:
       labels:
-        app: demo-app
+        release: prometheus
     spec:
       containers:
       - image: aputra/express-073:latest

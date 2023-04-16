@@ -3,11 +3,11 @@ kind: Service
 metadata:
   name: demo-svc
   labels:
-    app: demo-app
+    release: prometheus
   namespace: demo
 spec:
   selector:
-    app: demo-app
+    release: prometheus
   type: NodePort
   ports:
   - name: demo-app-port

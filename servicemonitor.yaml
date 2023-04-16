@@ -3,7 +3,7 @@ kind: ServiceMonitor
 metadata:
   name: demo-smon
   labels:
-    app: demo-app
+    release: prometheus
   namespace: demo
 spec:
   endpoints:
@@ -15,4 +15,4 @@ spec:
     - demo
   selector:
     matchLabels:
-      app: demo-app
+      release: prometheus
