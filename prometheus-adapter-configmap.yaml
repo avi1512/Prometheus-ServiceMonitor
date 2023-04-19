@@ -45,7 +45,6 @@ metadata:
   annotations:
     meta.helm.sh/release-name: prometheus-adapter
     meta.helm.sh/release-namespace: demo
-  creationTimestamp: "2023-04-16T18:28:31Z"
   labels:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/instance: prometheus-adapter
@@ -56,5 +55,3 @@ metadata:
     helm.sh/chart: prometheus-adapter-4.1.1
   name: prometheus-adapter
   namespace: demo
-  resourceVersion: "27198"
-  uid: 128e2b3e-a07b-4db7-8748-d5c7f567e67f
