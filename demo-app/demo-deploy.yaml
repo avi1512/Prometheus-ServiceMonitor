@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: monitoring
+
+### Default labels for Prometheus Grafana stack ###
+     # release: prometheus
+
+  template:
+    metadata:
+      labels:
+        app: monitoring
+
+### Default labels for Prometheus Grafana stack ###
+       # release: prometheus
+
+    spec:
+      containers:
+      - image: aputra/express-073:latest
+        name: express
+        ports:
+        - name: demo-app-port
+          containerPort: 8081
+        resources:
+          limits:
+            cpu: 500m
+            memory: 256Mi
+          requests:
+            cpu: 200m
+            memory: 128Mi

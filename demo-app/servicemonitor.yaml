@@ -1,0 +1,25 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: demo-smon
+  labels:
+    app: monitoring
+
+### Default labels for Prometheus Grafana stack ###
+    #release: prometheus
+
+  namespace: monitoring
+spec:
+  endpoints:
+  - port: demo-app-port
+    path: /metrics
+    interval: 15s
+  namespaceSelector:
+    matchNames:
+    - monitoring
+  selector:
+    matchLabels:
+      app: monitoring
+
+### Default labels for Prometheus Grafana stack ###
+      #release: prometheus
