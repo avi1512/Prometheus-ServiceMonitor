@@ -3,8 +3,12 @@ kind: ServiceMonitor
 metadata:
   name: demo-smon
   labels:
-    release: prometheus
-  namespace: demo
+    app: monitoring
+
+### Default labels for Prometheus Grafana stack ###
+    #release: prometheus
+
+  namespace: monitoring
 spec:
   endpoints:
   - port: demo-app-port
@@ -12,7 +16,10 @@ spec:
     interval: 15s
   namespaceSelector:
     matchNames:
-    - demo
+    - monitoring
   selector:
     matchLabels:
-      release: prometheus
+      app: monitoring
+
+### Default labels for Prometheus Grafana stack ###
+      #release: prometheus

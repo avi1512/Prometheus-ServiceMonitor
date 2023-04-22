@@ -1,6 +1,6 @@
 ---
 prometheus:
-  url: http://prometheus-kube-prometheus-prometheus.prometheus.svc
+  url: http://prometheus-operated.monitoring.svc
 rules:
   default: true
 #  seriesQuery: 'http_requests_total{namespace!="",pod!=""}'
