@@ -3,15 +3,15 @@ kind: Service
 metadata:
   name: demo-svc
   labels:
-    app: monitoring
+    app: demo-app
 
 ### Default labels for Prometheus Grafana stack ###
     #release: prometheus
 
-  namespace: monitoring
+  namespace: demo
 spec:
   selector:
-    app: monitoring
+    app: demo-app
 
 ### Default labels for Prometheus Grafana stack ###
     #release: prometheus

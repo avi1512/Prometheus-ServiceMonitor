@@ -3,7 +3,7 @@ kind: HorizontalPodAutoscaler
 apiVersion: autoscaling/v2
 metadata:
   name: http-requests-per-second-custom-metrics
-  namespace: monitoring
+  namespace: demo
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
