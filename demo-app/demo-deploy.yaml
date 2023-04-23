@@ -3,11 +3,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: demo-app
-  namespace: monitoring
+  namespace: demo
 spec:
   selector:
     matchLabels:
-      app: monitoring
+      app: demo-app
 
 ### Default labels for Prometheus Grafana stack ###
      # release: prometheus
@@ -15,7 +15,7 @@ spec:
   template:
     metadata:
       labels:
-        app: monitoring
+        app: demo-app
 
 ### Default labels for Prometheus Grafana stack ###
        # release: prometheus

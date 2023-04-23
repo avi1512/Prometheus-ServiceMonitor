@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: monitoring
+  name: demo
   labels:
-    app: monitoring
+    app: demo-app
 
 ### Default labels for Prometheus Grafana stack ###
     release: prometheus
