@@ -6,4 +6,4 @@ metadata:
     app: demo-app
 
 ### Default labels for Prometheus Grafana stack ###
-    release: prometheus
+   # release: prometheus
