@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo2-app
+  labels:
+    app: demo2-app
+  namespace: demo2
+spec:
+  selector:
+    matchLabels:
+      app: demo2-app
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: demo2-app
+    spec:
+      containers:
+      - name: demo2
+        image: aimvector/python:metrics
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000

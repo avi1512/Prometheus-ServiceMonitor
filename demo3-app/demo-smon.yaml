@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+  name: demo3-smon
+  namespace: demo3
+spec:
+  endpoints:
+  - interval: 30s
+    port: http-traffic
+    path: /internal/metrics
+  selector:
+    matchLabels:
+      app: demo3-app

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo2-svc
+  labels:
+    app: demo2-app
+  namespace: demo2
+spec:
+  type: ClusterIP
+  selector:
+    app: demo2-app
+  ports:
+    - protocol: TCP
+      name: web
+      port: 80
+      targetPort: 5000
