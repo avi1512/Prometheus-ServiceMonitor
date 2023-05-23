@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo3
+  labels:
+    app: demo3-app
+
+### Default labels for Prometheus Grafana stack ###
+   # release: prometheus
