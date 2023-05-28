@@ -1,8 +1,9 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  labels:
   name: demo2-smon
+  labels:
+    app: demo2-app
   namespace: demo2
 spec:
   endpoints:
