@@ -23,27 +23,47 @@
        when: "'helm' in out.stdout"
 
 
-#     - name: Checking Persistence StorageClass Installed in K8S
-#       shell: kubectl get sc
-#       register: result
-
      - name: Creating new namespace for Prometheus And Grafana Stack
        command: kubectl create ns monitoring
-#       when: 'result.stdout != ""'
 
       
      - name: Adding Prometheus repo and updating helm repo
        shell: |
                helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
                helm repo update
-#       when: 'result.stdout != ""'
+               touch /root/pvc-prometheus-grafana.yaml
+
+
+     - name: Adding PVC for Prometheus and Grafana
+       blockinfile:
+         dest: /root/pvc-prometheus-grafana.yaml
+         block:
+               |
+                prometheus:
+                  prometheusSpec:
+                    storageSpec:
+                      volumeClaimTemplate:
+                        spec:
+                          storageClassName: nfs-client
+                          accessModes: ["ReadWriteOnce"]
+                          resources:
+                            requests:
+                              storage: 1Gi
+
+                grafana:
+                  persistence:
+                    type: pvc
+                    enabled: true
+                    storageClassName: nfs-client
+                    accessModes: ["ReadWriteOnce"]
+                    size: 1Gi   
      
 
      - name: Installing Prometheus And Grafana
        shell: |
-               helm install prometheus-grafana-stack prometheus-community/kube-prometheus-stack -n monitoring
-#       when: 'result.stdout != ""'
+               helm install prometheus prometheus-community/kube-prometheus-stack -f /root/pvc-prometheus-grafana.yaml --set prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues=false --set prometheus.prometheusSpec.podMonitorSelectorNilUsesHelmValues=false -n monitoring
    
+
      - name: Replace Grafana Service ClusterIP To NodePort
        shell: "kubectl get svc prometheus-grafana -n monitoring -o yaml | sed 's/type: ClusterIP/type: NodePort/g' | kubectl replace -f -"
 
@@ -60,8 +80,3 @@
                helm list -A
        register: outs
      - debug: var=outs.stdout_lines
-#       when: 'result.stdout != ""'
-
-#     - debug:
-#         msg: Need To Install Persistence Volume Like NFS Storage or LongHorn Storage
-#       when: 'result.stdout == ""'
