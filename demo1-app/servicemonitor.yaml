@@ -14,9 +14,11 @@ spec:
   - port: demo-app-port
     path: /metrics
     interval: 15s
-  namespaceSelector:
-    matchNames:
-    - demo1
+
+ # namespaceSelector:
+ #   matchNames:
+ #   - demo1
+
   selector:
     matchLabels:
       app: demo1-app
